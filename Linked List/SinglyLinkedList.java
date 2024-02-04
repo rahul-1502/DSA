@@ -25,6 +25,16 @@ public class SinglyLinkedList {
         sll.display();
         sll.insertAtEnd(40);
         sll.display();
+        sll.insert(2,7);
+        sll.insert(3,8);
+        sll.insert(4,9);
+        sll.display();
+        sll.deleteFirst();
+        sll.display();
+        sll.deleteLast();
+        sll.display();
+        sll.delete(2);
+        sll.display();
 
     }
     // Displaying LinkedList
@@ -68,5 +78,63 @@ public class SinglyLinkedList {
             current=current.next;
         }
         current.next = newNode;
+    }
+    // Insert node at a given position
+    public void insert(int position,int value){
+        ListNode node = new ListNode(value);
+        if(position==1){
+            node.next = head;
+            head = node;
+        }
+        else{
+            ListNode prev = head;
+            int count = 1;
+            while(count<position-1){
+                prev = prev.next;
+                count++;
+            }
+            ListNode current = prev.next;
+            prev.next = node;
+            node.next = current;
+        }
+    }
+
+    // Delete first Node
+    public void deleteFirst(){
+        if(head==null){
+            return ;
+        }
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+    }
+
+    // Delete Last Node
+    public void deleteLast(){
+        if(head==null || head.next == null){
+            return;
+        }
+        ListNode current = head;
+        ListNode prev = null;
+        while (current.next!=null){
+            prev = current;
+            current = current.next;
+        }
+        prev.next = null;
+
+    }
+    // Delete Node at a given Position
+    public void delete(int position){
+        if(position==1)  head = head.next;
+        else{
+            ListNode prev = head;
+            int count = 1;
+            while(count < position-1){
+                prev = prev.next;
+                count++;
+            }
+            ListNode current = prev.next;
+            prev.next = current.next;
+        }
     }
 }
