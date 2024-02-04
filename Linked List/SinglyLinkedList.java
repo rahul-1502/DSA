@@ -1,4 +1,5 @@
 public class SinglyLinkedList {
+    // Defining
     private ListNode head;
     private static class ListNode{
         private int data;
@@ -20,8 +21,13 @@ public class SinglyLinkedList {
         System.out.println("Linked List");
         System.out.println(sll.length());
         sll.display();
+        sll.insertFirst(5);
+        sll.display();
+        sll.insertAtEnd(40);
+        sll.display();
 
     }
+    // Displaying LinkedList
     public void display(){
         ListNode current = head;
         while(current!=null){
@@ -32,6 +38,7 @@ public class SinglyLinkedList {
         System.out.println("null");
 
     }
+    // Finding Length
     public int length(){
         if(head==null) return 0;
         int count = 0;
@@ -41,5 +48,25 @@ public class SinglyLinkedList {
             count++;
         }
         return count;
+    }
+
+    // Inserting at beginning
+    public void insertFirst(int value){
+        ListNode newNode = new ListNode(value);
+        newNode.next = head;
+        head = newNode;
+    }
+    // Insertion at end
+    public void insertAtEnd(int value){
+        ListNode newNode = new ListNode(value);
+        if(head==null){
+            head = newNode;
+            return;
+        }
+        ListNode current = head;
+        while(current.next!=null){
+            current=current.next;
+        }
+        current.next = newNode;
     }
 }
