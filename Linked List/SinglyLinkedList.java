@@ -1,7 +1,7 @@
 public class SinglyLinkedList {
     // Defining
-    private ListNode head;
-    private static class ListNode{
+    private static ListNode head;
+     private static class ListNode{
         private int data;
         private ListNode next;
         public ListNode(int data){
@@ -35,6 +35,11 @@ public class SinglyLinkedList {
         sll.display();
         sll.delete(2);
         sll.display();
+        System.out.println(sll.find(20));
+        sll.reverse(head);
+
+
+
 
     }
     // Displaying LinkedList
@@ -136,5 +141,42 @@ public class SinglyLinkedList {
             ListNode current = prev.next;
             prev.next = current.next;
         }
+    }
+    // Search element in SinglyLinkedList
+    public  boolean find(int key){
+        if(head==null){
+            return false;
+        }
+        ListNode current = head;
+        while(current!=null){
+            if(current.data==key){
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+
+    }
+    // Reverse SinglyLikedList
+    public ListNode reverse(ListNode head){
+        if(head == null) return head;
+        ListNode current = head;
+        ListNode prev = null;
+        ListNode next = null;
+        while(current!=null){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        // Displaying after reverse
+        ListNode Node = prev;
+        while(Node!=null){
+            // Values in LinkedList
+            System.out.print(Node.data+"->");
+            Node = Node.next;
+        }
+        System.out.println("null");
+        return  prev;
     }
 }
