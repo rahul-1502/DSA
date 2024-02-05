@@ -36,7 +36,13 @@ public class SinglyLinkedList {
         sll.delete(2);
         sll.display();
         System.out.println(sll.find(20));
-        sll.reverse(head);
+        //sll.reverse(head);
+        sll.getMiddle();
+        sll.insert(2,9);
+        sll.insert(5,20);
+        sll.display();
+        sll.removeDeplicate();
+        sll.display();
 
 
 
@@ -178,5 +184,70 @@ public class SinglyLinkedList {
         }
         System.out.println("null");
         return  prev;
+    }
+    // Middle element in LinkedList
+    public ListNode getMiddle(){
+         if(head == null) return null;
+         ListNode slowPtr = head;
+         ListNode fastPtr = head;
+         while(fastPtr!=null && fastPtr.next!=null){
+             slowPtr = slowPtr.next;
+             fastPtr = fastPtr.next.next;
+         }
+         System.out.println(slowPtr.data);
+         return slowPtr;
+
+    }
+    // Find nth element from end
+    public ListNode getnthFromEnd(int n){
+         if(head == null){
+             return null;
+         }
+         if(n<=0){
+             System.out.println("Invalid Input");
+             return null;
+         }
+         ListNode mainPtr = head;
+         ListNode refPtr = head;
+         int count = 0;
+         while (count<n){
+             if(refPtr==null){
+                 return null;
+             }
+             refPtr = refPtr.next;
+             count++;
+
+         }
+         while (refPtr!=null){
+             refPtr=refPtr.next;
+             mainPtr = mainPtr.next;
+         }
+
+         return mainPtr;
+    }
+    // Remove duplicate from sorted LinkedList
+    public void removeDeplicate(){
+         if(head==null) return;
+         ListNode current = head;
+         while(current!=null && current.next!=null){
+             if(current.data==current.next.data){
+                 current.next = current.next.next;
+             }
+             else{
+                 current = current.next;
+             }
+         }
+    }
+
+    // Detect loop in singly linked list
+    public boolean isLoop(){
+         ListNode fastPtr = head;
+         ListNode slowPtr = head;
+         while (fastPtr!=null && fastPtr.next!=null){
+             fastPtr = fastPtr.next.next;
+             slowPtr = slowPtr.next;
+             if(slowPtr == fastPtr) return true;
+         }
+         return false;
     }
 }
