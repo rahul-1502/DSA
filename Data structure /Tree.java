@@ -115,5 +115,16 @@ public class Tree {
             if (temp.right) queue.offer(temp.right);
         }
     }
+
+    // Max Value in tree
+    public int maxValue(TreeNode root){
+        if(root == null) return Integer.MIN_VALUE;
+        int result = root.data;
+        int left = maxValue(root.left);
+        int right = maxValue(root.right);
+        if(left>right) result = left;
+        if(right>left) result = right;
+        return result;
+    }
     
 }
